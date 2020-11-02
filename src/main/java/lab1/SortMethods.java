@@ -37,35 +37,34 @@ public class SortMethods {
     }
 
     private static void quickSort(List<Insect> insectList, int low, int high) {
-        if (low < high + 1) {
-            int p = partition(insectList, low, high);
-            quickSort(insectList, low, p - 1);
-            quickSort(insectList, p + 1, high);
+        if (low < high) {
+            int pi = partition(insectList, low, high);
+            quickSort(insectList, low, pi - 1);
+            quickSort(insectList, pi + 1, high);
         }
     }
 
     private static int partition(List<Insect> insectList, int low, int high) {
-        swap(insectList, low, getPivot(low, high));
-        int border = low + 1;
-        for (int i = border; i <= high; i++) {
-            if (insectList.get(i).getWeight() < insectList.get(low).getWeight()) {
-                swap(insectList, i, border++);
+        float pivot = insectList.get(high).getWeight();
+        int i = (low - 1); // index of smaller element
+        for (int j = low; j < high; j++) {
+            if (insectList.get(j).getWeight() > pivot) {
+                i++;
+                swap(insectList, i, j);
                 quickSwapCounter++;
             }
             quickCompareCounter++;
         }
-        swap(insectList, low, border - 1);
-        quickSwapCounter += 2;
-        return border - 1;
+        // swap arr[i+1] and arr[high] (or pivot)
+        swap(insectList, i + 1, high);
+        quickSwapCounter++;
+
+        return i + 1;
     }
 
-    private static int getPivot(int low, int high) {
-        return (low + high) / 2;
-    }
-
-    private static void swap(List<Insect> array, int currentElement, int elementToSwap) {
-        Insect temp = array.get(currentElement);
-        array.set(currentElement, array.get(elementToSwap));
-        array.set(elementToSwap, temp);
+    private static void swap(List<Insect> array, int firstElement, int secondElement) {
+        Insect temp = array.get(firstElement);
+        array.set(firstElement, array.get(secondElement));
+        array.set(secondElement, temp);
     }
 }
