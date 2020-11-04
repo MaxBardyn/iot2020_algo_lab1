@@ -7,7 +7,7 @@ import static lab1.SortMethods.*;
 public class Main {
 
     public static void main(String[] args) {
-        List<Insect> dataFromFile = WriteAndReadCsvFile.getDataFromFile("insect.csv");
+        List<Insect> dataFromFile = WriteAndReadCsvFile.getDataFromFile();
 
         selectionSortInsectsBySpeedDesc(dataFromFile);
 
