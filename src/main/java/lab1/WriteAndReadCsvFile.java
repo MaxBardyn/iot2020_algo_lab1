@@ -8,13 +8,13 @@ import java.util.List;
 public class WriteAndReadCsvFile {
 
 
-    protected static List<Insect> getDataFromFile(String fileName) {
+    protected static List<Insect> getDataFromFile() {
 
-        var file = new File(fileName);
+        var file = new File("insect.csv");
         List<Insect> insectList = new ArrayList<>();
 
         if (!file.exists()) {
-            createFileWithInsectData(fileName);
+            createFileWithInsectData();
         }
         try (BufferedReader fileReader = new BufferedReader(new FileReader(file))) {
 
@@ -32,11 +32,11 @@ public class WriteAndReadCsvFile {
         return insectList;
     }
 
-    private static void createFileWithInsectData(String fileName) {
+    private static void createFileWithInsectData() {
 
         var insectList = createInsectList();
 
-        try (FileWriter fileWriter = new FileWriter(fileName)) {
+        try (FileWriter fileWriter = new FileWriter("insect.csv")) {
 
             fileWriter.write(Insect.getHeaders() + "\n");
 
