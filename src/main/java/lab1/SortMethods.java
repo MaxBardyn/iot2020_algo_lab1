@@ -21,9 +21,9 @@ public class SortMethods {
                     minIndex = j;
                     selectionCompareCounter++;
                 }
-                swap(insectArray, minIndex, i);
-                selectionSwapCounter++;
             }
+            swap(insectArray, minIndex, i);
+            selectionSwapCounter++;
         }
         selectionTimeInMillis = (System.nanoTime() - startTime) / 1000D;
     }
@@ -44,16 +44,15 @@ public class SortMethods {
 
     private static int partition(List<Insect> insectList, int low, int high) {
         var pivot = insectList.get(high);
-        int i = low - 1; // index of smaller element
+        int i = low - 1;
         for (int j = low; j < high; j++) {
             if (insectList.get(j).getWeight() > pivot.getWeight()) {
+                quickCompareCounter++;
                 i++;
                 swap(insectList, i, j);
                 quickSwapCounter++;
             }
-            quickCompareCounter++;
         }
-        // swap arr[i+1] and arr[high] (or pivot)
         swap(insectList, i + 1, high);
         quickSwapCounter++;
         return i + 1;
