@@ -19,8 +19,8 @@ public class SortMethods {
             for (int j = i + 1; j < insectArray.size(); j++) {
                 if (insectArray.get(j).getSpeed() > insectArray.get(minIndex).getSpeed()) {
                     minIndex = j;
-                    selectionCompareCounter++;
                 }
+                selectionCompareCounter++;
             }
             swap(insectArray, minIndex, i);
             selectionSwapCounter++;
@@ -47,11 +47,11 @@ public class SortMethods {
         int i = low - 1;
         for (int j = low; j < high; j++) {
             if (insectList.get(j).getWeight() > pivot.getWeight()) {
-                quickCompareCounter++;
                 i++;
                 swap(insectList, i, j);
                 quickSwapCounter++;
             }
+            quickCompareCounter++;
         }
         swap(insectList, i + 1, high);
         quickSwapCounter++;
